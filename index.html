@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 모아경제TV 설맞이 이벤트</title>
+  <style>
+    body { font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; text-align: center; padding: 20px; background-color: #f7f9fc; margin: 0; }
+    .container { max-width: 450px; margin: 0 auto; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .screen { display: none; animation: fadeIn 0.4s; }
+    .screen.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* 스타일들 (기존과 동일) */
+    .notice-box { text-align: left; font-size: 14px; line-height: 1.6; background: #f9f9f9; padding: 15px; border-radius: 8px; height: 320px; overflow-y: auto; border: 1px solid #ddd; margin-bottom: 15px; }
+    .notice-box h3 { margin-top: 0; color: #d32f2f; font-size: 16px; }
+    .member-badge { display: inline-block; background-color: #d32f2f; color: white; font-weight: bold; padding: 5px 15px; border-radius: 20px; font-size: 15px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(211, 47, 47, 0.3); }
+    .input-guide { font-size: 18px; font-weight: 900; color: #333; margin: 20px 0 10px 0; line-height: 1.4; }
+    .input-guide span { color: #d32f2f; }
+    .safe-note { font-size: 13px; color: #666; margin-top: 8px; margin-bottom: 20px; background-color: #f0f0f0; padding: 8px; border-radius: 6px; }
+    input[type="text"], input[type="tel"] { width: 90%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; }
+    .checkbox-label { display: block; margin: 15px 0; font-size: 15px; font-weight: bold; cursor: pointer; }
+    button { background-color: #d32f2f; color: white; border: none; padding: 15px 20px; width: 100%; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 5px; transition: background 0.2s; }
+    button:hover { background-color: #b71c1c; }
+    button:disabled { background-color: #aaa; cursor: not-allowed; }
+    .win-title { font-size: 24px; color: #d32f2f; margin-bottom: 20px; font-weight: bold; }
+    .win-prize { font-size: 26px; font-weight: bold; color: #111; padding: 20px 0; line-height: 1.4; border-top: 2px dashed #eee; border-bottom: 2px dashed #eee; }
+    .win-footer { font-size: 14px; color: #666; margin-top: 20px; }
+    .error-msg { font-size: 18px; font-weight: bold; color: #333; margin-top: 30px; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="screen-notice" class="screen active">
+      <h2 style="color: #d32f2f; margin-top: 0; margin-bottom: 10px;">🧧 2026 모아경제TV<br>새해 맞이 경품 이벤트 🧧</h2>
+      <div class="member-badge">MEMBERSHIP ONLY (멤버십 전용)</div>
+      <div class="notice-box">
+        <h3>📅 이벤트 기간</h3>
+        • 본 행사: 2026년 2월 16일(월) ~ 2월 18일(수) (3일간)<br>
+        • 잔여분 추첨: 2월 19일(목) [패자부활전 - 1인 2회 참여 가능!]<br><br>
+        <h3>🎁 경품 구성 (총 19명!)</h3>
+        🥇 1등 (1명): 명품 한우 SET 🥩<br>
+        🥈 2등 (3명): 프리미엄 과일 SET 🍎<br>
+        🥉 3등 (5명): 치킨 기프티콘 🍗<br>
+        🏅 4등 (10명): 커피 기프티콘 ☕<br><br>
+        <h3>📝 참여 방법</h3>
+        1. 멤버십에 등록된 본인 성함과 전화번호를 입력합니다.<br>
+        2. 제출 후 즉시 당첨 여부를 확인하세요!<br>
+        3. 당첨되신 분은 당첨 화면을 캡쳐하여 카카오톡방에 인증해주시면 확인 후 경품을 발송해 드립니다!<br><br>
+        <h3>⚠️ 꼭 확인해주세요!</h3>
+        • 본 이벤트는 미리 등록된 멤버십 명단에 있는 분들만 참여 가능합니다. 🚫<br>
+        • 16일~18일에는 하루에 딱 1번만 참여하실 수 있습니다.<br>
+        • 19일에는 남은 경품 소진을 위해 1인 2회까지 기회를 드립니다! 🔥<br>
+        • 번호가 틀리면 당첨에서 제외될 수 있으니 주의해주세요!
+      </div>
+      <label class="checkbox-label"><input type="checkbox" id="checkAgree"> 확인했습니다 (선택)</label>
+      <button onclick="goToForm()">다음으로 👉</button>
+    </div>
+
+    <div id="screen-form" class="screen">
+      <h2 style="color: #d32f2f;">정보 입력</h2>
+      <div class="input-guide"><span>모아경제TV 회원 가입 번호</span>를<br>입력하세요</div>
+      <input type="text" id="userName" placeholder="성함 입력">
+      <input type="tel" id="userPhone" placeholder="전화번호 (예: 01012345678)">
+      <div class="safe-note">*이벤트 참여 외 다른 목적으로 활용하지 않습니다✖️</div>
+      <button id="submitBtn" onclick="runLottery()">선물 뽑기! 🎲</button>
+    </div>
+
+    <div id="screen-result" class="screen"></div>
+  </div>
+
+  <script>
+    // ⚠️ 여기에 아까 복사한 구글 웹앱 URL을 붙여넣으세요! (따옴표 필수)
+    var scriptURL = "https://script.google.com/macros/s/AKfycbx8SxGpT98SlG3P_La_9Jmz6kMN7fMmgY3L8GfFN64Gw0Twvx32MBzQ5mXzypvzy3s7/exec"; 
+
+    function goToForm() {
+      document.getElementById('screen-notice').classList.remove('active');
+      document.getElementById('screen-form').classList.add('active');
+    }
+
+    function runLottery() {
+      var name = document.getElementById('userName').value;
+      var phone = document.getElementById('userPhone').value;
+      
+      if(!name || !phone) {
+        alert("성함과 전화번호를 모두 입력해주세요.");
+        return;
+      }
+
+      var btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.innerText = "추첨 중... 🎲";
+
+      // 깃허브용 통신 방식 (fetch 사용)
+      fetch(scriptURL + "?name=" + encodeURIComponent(name) + "&phone=" + encodeURIComponent(phone))
+      .then(response => response.json())
+      .then(res => {
+          document.getElementById('screen-form').classList.remove('active');
+          var resultScreen = document.getElementById('screen-result');
+          
+          if(res.status === 'win') {
+            resultScreen.innerHTML = `
+              <div class="win-title">🎊당첨을 축하합니다!🎊</div>
+              <div class="win-prize">${res.message}</div>
+              <div class="win-footer">*선물은 2/19일 모바일로 전달됩니다!</div>
+            `;
+          } else {
+            // 꽝, 에러 등
+            var msg = (res.status === 'error') ? res.message : "😭 아쉽지만 꽝! 다음 기회에..";
+            resultScreen.innerHTML = `
+              <div class="error-msg">${msg}</div>
+              <button onclick="location.reload()" style="margin-top:40px; background:#555;">처음으로 돌아가기</button>
+            `;
+          }
+          resultScreen.classList.add('active');
+      })
+      .catch(error => {
+          alert("통신 오류가 발생했습니다. 다시 시도해주세요.");
+          btn.innerText = "선물 뽑기! 🎲";
+          btn.disabled = false;
+      });
+    }
+  </script>
+</body>
+</html>
